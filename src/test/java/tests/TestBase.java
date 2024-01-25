@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import config.BrowserDriverConfig;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.aeonbits.owner.ConfigFactory;
@@ -41,7 +42,10 @@ public class TestBase {
 
     @AfterEach
     void addAttachment() {
-
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
       closeWebDriver();
     }
 }
