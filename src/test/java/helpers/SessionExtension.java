@@ -14,9 +14,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class SessionExtension implements BeforeEachCallback {
     @Override
     public void beforeEach(ExtensionContext context) {
-        Configuration.baseUrl = "https://demoqa.com";
-        RestAssured.baseURI = "https://demoqa.com";
-
+//
         open("/favicon.ico");
 
         LoginResponse authResponse = AuthorizationApi.authResponse();
