@@ -6,8 +6,7 @@ import models.LoginResponse;
 import static data.UserData.PASSWORD;
 import static data.UserData.USER_NAME;
 import static io.restassured.RestAssured.given;
-import static specs.Specification.successfulLoginResponse;
-import static specs.Specification.loginRequest;
+import static specs.Specification.*;
 
 
 public class AuthorizationApi {
@@ -18,13 +17,13 @@ public class AuthorizationApi {
         userData.setPassword(PASSWORD);
 
         return
-                given(loginRequest)
+                given(allRequests)
                         .body(userData)
                 .when()
-                        .post()
+                        .post("/Account/v1/Login")
                 .then()
                         .log().all()
-                        .spec(successfulLoginResponse)
+                        .spec(successfulLoginResponse200)
                         .extract().as(LoginResponse.class);
     };
 }

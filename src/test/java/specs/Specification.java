@@ -11,35 +11,28 @@ import static io.restassured.filter.log.LogDetail.STATUS;
 import static io.restassured.http.ContentType.JSON;
 
 public class Specification {
-    static String loginEndPoint = "/Account/v1/Login";
-    static String booksEndPoint = "/BookStore/v1/Books";
-    public static RequestSpecification loginRequest = with()
+
+    public static RequestSpecification allRequests = with()
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
             .log().headers()
-            .contentType(JSON)
-            .basePath(loginEndPoint);
-    public static ResponseSpecification successfulLoginResponse = new ResponseSpecBuilder()
+            .contentType(JSON);
+
+    public static ResponseSpecification successfulLoginResponse200 = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(STATUS)
             .log(BODY)
             .build();
 
-    public static RequestSpecification booksRequest = with()
-            .filter(withCustomTemplates())
-            .log().uri()
-            .log().body()
-            .log().headers()
-            .contentType(JSON)
-            .basePath(booksEndPoint);
-    public static ResponseSpecification successDeleteAllBooksResponse = new ResponseSpecBuilder()
+
+    public static ResponseSpecification successDeleteAllBooksResponse204 = new ResponseSpecBuilder()
             .expectStatusCode(204)
             .log(STATUS)
             .log(BODY)
             .build();
 
-    public static ResponseSpecification successAddBooksResponse = new ResponseSpecBuilder()
+    public static ResponseSpecification successAddBooksResponse201 = new ResponseSpecBuilder()
             .expectStatusCode(201)
             .log(STATUS)
             .log(BODY)

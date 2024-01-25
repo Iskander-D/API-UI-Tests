@@ -25,6 +25,10 @@ public class TestBase {
 
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = config.getBrowserName();
+        Configuration.browserVersion = config.getBrowserVersion();
+
         if (!config.getRemoteWebDriver().isEmpty()) {
             Configuration.remote
                     = config.getRemoteWebDriver();
